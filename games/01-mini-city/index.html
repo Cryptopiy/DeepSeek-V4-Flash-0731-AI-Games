@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini City — Browser Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="hud" class="hidden">
+  <div id="modeTag">ON FOOT</div>
+  <div id="speedometer">
+    <div id="speedBar"><div id="speedFill"></div></div>
+    <span id="speedValue">0</span><span id="speedUnit">km/h</span>
+  </div>
+  <div id="wanted"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div>
+  <div id="objective">Get in the car and explore the city.</div>
+  <div id="contextHint"></div>
+  <div id="helpHint">E enter/exit &middot; R reset car &middot; N night &middot; Shift sprint &middot; Esc menu</div>
+</div>
+
+<canvas id="minimap" width="340" height="340"></canvas>
+
+<div id="floats"></div>
+
+<div id="startOverlay" class="overlay">
+  <div class="panel">
+    <h1>MINI&nbsp;CITY</h1>
+    <p class="sub">A tiny open-world driving demo &mdash; Three.js + cannon-es</p>
+    <div class="controls">
+      <div><b>WASD</b> move / drive</div>
+      <div><b>Mouse</b> look around</div>
+      <div><b>Shift</b> sprint on foot</div>
+      <div><b>Space</b> handbrake</div>
+      <div><b>E</b> enter / exit car</div>
+      <div><b>R</b> reset car</div>
+      <div><b>N</b> night mode &nbsp;&middot;&nbsp; <b>Esc</b> menu</div>
+    </div>
+    <button id="startBtn">&#9654; Click to Start</button>
+  </div>
+</div>
+
+<div id="pauseOverlay" class="overlay hidden">
+  <div class="panel">
+    <h2>PAUSED</h2>
+    <div class="controls">
+      <div><b>WASD</b> move &nbsp;&middot;&nbsp; <b>Shift</b> sprint</div>
+      <div><b>E</b> enter / exit car &nbsp;&middot;&nbsp; <b>R</b> reset car</div>
+      <div><b>Mouse</b> look around &nbsp;&middot;&nbsp; <b>N</b> night mode</div>
+    </div>
+    <button id="resumeBtn">&#9654; Resume</button>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

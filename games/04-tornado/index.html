@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TORNADO — Town Destruction Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="hud">
+  <div class="panel-card" id="hudMain">
+    <div class="row">
+      <span class="label">STRENGTH</span>
+      <span class="value" id="hudStrength">EF-1 · Weak</span>
+    </div>
+    <div id="strengthBars"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="row"><span class="label">WIND (approx.)</span><span class="value" id="hudWind">0 km/h</span></div>
+    <div class="row"><span class="label">PIECES BROKEN</span><span class="value" id="hudBroken">0</span></div>
+    <div class="row"><span class="label">BUILDINGS DAMAGED</span><span class="value" id="hudHouses">0</span></div>
+    <div class="row"><span class="label">ACTIVE DEBRIS</span><span class="value" id="hudDebris">0</span></div>
+    <div class="row"><span class="label">CAMERA</span><span class="value" id="hudCam">FOLLOW</span></div>
+    <div class="row grow"><span class="label">STATE</span><span class="value" id="hudState">PAUSED — press START</span></div>
+    <div class="divider"></div>
+    <div class="controlsHint">
+      <div><b>WASD / Arrows</b> move tornado</div>
+      <div><b>Q / E</b> strength &nbsp;<b>·</b>&nbsp; <b>Shift</b> sprint</div>
+      <div><b>C</b> camera &nbsp;<b>·</b>&nbsp; <b>Space</b> pause</div>
+      <div><b>R</b> reset town &nbsp;<b>·</b>&nbsp; <b>M</b> sound &nbsp;<b>·</b>&nbsp; <b>Esc</b> menu</div>
+    </div>
+    <div class="disclaimer">Vortex forces and damage are simplified for interactive visualization.</div>
+  </div>
+</div>
+
+<div id="msg"></div>
+
+<div id="startOverlay" class="overlay">
+  <div class="panel">
+    <h1>TORNADO</h1>
+    <h2 class="subtitle">Interactive Town Destruction Simulator</h2>
+    <p class="sub">Guide a tornado through a small low-poly town. Watch roofs rip off, trees snap,
+      and cars tumble into the vortex. Built with Three.js + cannon-es. Enjoy.</p>
+    <div class="controls">
+      <div><b>WASD / Arrows</b> &mdash; move tornado over the ground</div>
+      <div><b>Q / E</b> &mdash; lower / raise strength (1 &rarr; 5)</div>
+      <div><b>Shift</b> &mdash; sprint (faster movement)</div>
+      <div><b>Space</b> &mdash; pause / resume</div>
+      <div><b>C</b> &mdash; cycle cameras (follow / orbit / overview)</div>
+      <div><b>R</b> &mdash; reset the entire town</div>
+      <div><b>M</b> &mdash; toggle sound &nbsp;&middot;&nbsp; <b>Esc</b> &mdash; menu / pause</div>
+    </div>
+    <button id="startBtn">&#9654; CONDUCT THE STORM</button>
+  </div>
+</div>
+
+<div id="pauseOverlay" class="overlay hidden">
+  <div class="panel">
+    <h1>PAUSED</h1>
+    <div class="controls">
+      <div><b>Space / Esc</b> &mdash; resume</div>
+      <div><b>R</b> &mdash; reset the entire town</div>
+    </div>
+    <button id="resumeBtn">&#9654; RESUME</button>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crash Test Arena — 3D Car Crash Simulator</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+      "cannon-es": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <canvas id="scene"></canvas>
+
+    <!-- Top bar -->
+    <header id="hud-top">
+      <div class="hud-title">
+        <h1>CRASH TEST ARENA</h1>
+        <span class="hud-sub">3D car crash simulator</span>
+      </div>
+      <div id="scenario-label" class="hud-pill">Scenario: Open Arena</div>
+      <div id="mode-labels" class="hud-mode-labels">
+        <span id="slowmo-badge" class="badge badge-red hidden">SLOW-MO</span>
+        <span id="camera-badge" class="badge badge-blue">CHASE</span>
+      </div>
+    </header>
+
+    <!-- Scenario buttons -->
+    <div id="scenario-buttons">
+      <button data-scenario="arena" class="btn">Open Arena</button>
+      <button data-scenario="wall" class="btn">1 · Wall Test</button>
+      <button data-scenario="twocar" class="btn">2 · Two-Car Test</button>
+      <button data-scenario="ramp" class="btn">3 · Ramp Test</button>
+      <span class="btn-sep"></span>
+      <button id="btn-reset" class="btn btn-warn">R · Reset Car</button>
+      <button id="btn-scenario-reload" class="btn btn-warn">↻ Reload</button>
+      <button id="btn-slowmo" class="btn">T · Slow-Mo</button>
+      <button id="btn-camera" class="btn">C · Camera</button>
+    </div>
+
+    <!-- Left stat panel -->
+    <aside id="panel-speed" class="panel panel-left">
+      <div class="stat-speed">
+        <span id="stat-speed-value">0</span>
+        <span class="stat-unit">km/h</span>
+      </div>
+      <div id="stat-gear" class="stat-gear">N</div>
+      <div class="stat-row">
+        <span>Condition</span>
+        <div class="bar"><div id="bar-condition" class="bar-fill" style="width:100%"></div></div>
+      </div>
+    </aside>
+
+    <!-- Damage bars -->
+    <aside id="panel-damage" class="panel">
+      <div class="panel-title">Damage zones</div>
+      <div class="stat-row"><span>FRONT</span><div class="bar small"><div id="bar-front" class="bar-fill" style="width:0%"></div></div><b id="val-front">0%</b></div>
+      <div class="stat-row"><span>REAR</span><div class="bar small"><div id="bar-rear" class="bar-fill" style="width:0%"></div></div><b id="val-rear">0%</b></div>
+      <div class="stat-row"><span>LEFT</span><div class="bar small"><div id="bar-left" class="bar-fill" style="width:0%"></div></div><b id="val-left">0%</b></div>
+      <div class="stat-row"><span>RIGHT</span><div class="bar small"><div id="bar-right" class="bar-fill" style="width:0%"></div></div><b id="val-right">0%</b></div>
+    </aside>
+
+    <!-- Latest impact -->
+    <aside id="panel-impact" class="panel panel-impact">
+      <div class="panel-title">Latest impact</div>
+      <div class="impact-grid">
+        <div><span>Speed</span><b id="impact-speed">—</b></div>
+        <div><span>Energy</span><b id="impact-energy">—</b></div>
+        <div><span>Severity</span><b id="impact-severity" class="sev sev-none">—</b></div>
+      </div>
+    </aside>
+
+    <!-- Crash result overlay -->
+    <div id="crash-overlay" class="crash-overlay">
+      <div id="crash-severity" class="crash-sev">CRITICAL</div>
+      <div class="crash-grid">
+        <div><span>Impact speed</span><b id="crash-speed">0 km/h</b></div>
+        <div><span>Approx. energy</span><b id="crash-energy">0 kJ</b></div>
+        <div><span>Damage taken</span><b id="crash-damage">0 %</b></div>
+      </div>
+    </div>
+
+    <!-- Controls panel -->
+    <footer id="controls-panel">
+      <div id="controls-header">Controls <span id="controls-toggle">▾</span></div>
+      <div id="controls-body">
+        <table>
+          <tr><td>W</td><td>Accelerate</td></tr>
+          <tr><td>S</td><td>Brake / Reverse</td></tr>
+          <tr><td>A / D</td><td>Steer left / right</td></tr>
+          <tr><td>Space</td><td>Handbrake</td></tr>
+          <tr><td>R</td><td>Reset car</td></tr>
+          <tr><td>Enter</td><td>Reload scenario</td></tr>
+          <tr><td>C</td><td>Cycle camera</td></tr>
+          <tr><td>T</td><td>Toggle slow-motion</td></tr>
+          <tr><td>1 .. 4</td><td>Select test scenario</td></tr>
+        </table>
+      </div>
+    </footer>
+
+    <!-- Fatal / load error overlay -->
+    <div id="load-error" class="load-error hidden">
+      <h2>Failed to start simulator</h2>
+      <p id="load-error-msg">The 3D libraries could not be loaded. Check your internet connection and start a local static server (<code>python3 -m http.server</code>) in this folder, then open the page.</p>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

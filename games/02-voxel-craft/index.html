@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Voxel Craft — Browser Sandbox</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+  if (location.protocol === "file:") {
+    document.addEventListener("DOMContentLoaded", function () {
+      var m = document.getElementById("menu-msg");
+      if (m) m.textContent = "Tip: open via a local server (python3 -m http.server), file:// blocks JavaScript modules.";
+    });
+  }
+</script>
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<div id="vignette"></div>
+
+<!-- Start menu -->
+<div id="menu">
+  <h1>VOXEL&nbsp;CRAFT</h1>
+  <p class="tagline">a browser voxel sandbox</p>
+
+  <div class="seed-row">
+    <input id="seed-input" type="text" placeholder="world seed (optional)" maxlength="16" autocomplete="off" />
+    <span class="seed-hint">leave empty for a random seed</span>
+  </div>
+
+  <button id="play-btn">Click to Play</button>
+
+  <div class="legend">
+    <div><b>W A S D</b> — move</div>
+    <div><b>Mouse</b> — look around</div>
+    <div><b>Space</b> — jump / swim</div>
+    <div><b>Left Click</b> — break block</div>
+    <div><b>Right Click</b> — place block</div>
+    <div><b>1–6</b> — select block slot</div>
+    <div><b>Shift</b> — sprint</div>
+    <div><b>N</b> — toggle day/night cycle</div>
+    <div><b>P / L</b> — save / load world</div>
+    <div><b>Shift+R</b> — regenerate world</div>
+  </div>
+
+  <div id="menu-msg"></div>
+
+  <div class="run-hint">Serve locally: <code>python3 -m http.server 8000</code> &rarr; open <code>http://localhost:8000</code></div>
+</div>
+
+<!-- Paused overlay -->
+<div id="paused" class="hidden">
+  <div class="pause-box">
+    <h2>Paused</h2>
+    <p>Click anywhere to resume</p>
+  </div>
+</div>
+
+<!-- HUD -->
+<div id="hud" class="hidden">
+  <div id="crosshair"></div>
+
+  <div id="top-left">
+    <div id="block-name">Grass</div>
+    <div id="coords">X: 0 &nbsp;Y: 0 &nbsp;Z: 0</div>
+  </div>
+
+  <div id="top-right">
+    <div id="fps">FPS: --</div>
+    <div id="debug"></div>
+  </div>
+
+  <div id="bottom-left">
+    <div id="seed-label">Seed: --</div>
+    <div id="keys-hint">N day/night &middot; P/L save/load &middot; Shift+R reset</div>
+  </div>
+
+  <div id="hotbar"></div>
+  <div id="toast"></div>
+</div>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
